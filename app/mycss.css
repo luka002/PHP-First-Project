@@ -83,7 +83,7 @@ ul {
     padding: 0;
     overflow: hidden;
     background: linear-gradient(to bottom, #111111, #545454);
-    //border-bottom: 1px solid #ffe81f;
+    border-bottom: 1px solid #ffe81f;
 }
 
 li {
