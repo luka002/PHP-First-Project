@@ -9,19 +9,19 @@
 class AdditionController implements Controller {
 
     /**
-     * @var Templating Creates HTML file that will be sent back to user.
+     * @var Templating Fills provided template file with provided variables.
      */
     private $template;
     /**
-     * @var User Holds data about current user or null if user not logged in.
+     * @var User Holds data about logged in user or null if user not logged in.
      */
     private $user;
 
     /**
      * AdditionController constructor.
-     * @param Templating $template Creates HTML file that will be sent back to user.
-     * @param User|null $user Holds data about current user. If user is not logged
-     *                        in than $user will be null.
+     * @param Templating $template Fills provided template file with provided variables.
+     * @param User|null $user Holds data about logged in user or null if user
+     *                        is not logged in.
      */
     public function __construct(Templating $template, User $user = null) {
         $this->template = $template;
@@ -61,12 +61,12 @@ class AdditionController implements Controller {
     }
 
     /**
-     * Creates object that stores HTML file which will be
-     * sent to user as a response.
+     * Creates object that holds content which will
+     * be sent to user as HTML response.
      *
      * @param string $result Final result.
      * @param string $entry User entry.
-     * @return HTMLResponse Object containing HTML file which will be sent to user.
+     * @return HTMLResponse Object containing content which will be sent to user.
      */
     private function htmlResponse(string $result = '', string $entry = ''): HTMLResponse {
         return new HTMLResponse($this->template->render(

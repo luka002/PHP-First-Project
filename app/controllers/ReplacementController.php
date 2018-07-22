@@ -9,18 +9,19 @@
 class ReplacementController implements Controller {
 
     /**
-     * @var Templating Creates HTML file that will be sent back to user.
+     * @var Templating Fills provided template file with provided variables.
      */
     private $template;
     /**
-     * @var User Holds data about current user or null if user not logged in.
+     * @var User Holds data about logged in user or null if user not logged in.
      */
     private $user;
 
     /**
      * ReplacementController constructor.
-     * @param Templating $template Creates HTML file that will be sent back to user.
-     * @param User|null $user Holds data about current user or null if user not logged in.
+     * @param Templating $template Fills provided template file with provided variables.
+     * @param User|null $user Holds data about logged in user or null if user
+     *                        is not logged in.
      */
     public function __construct(Templating $template, User $user = null) {
         $this->template = $template;
@@ -32,9 +33,11 @@ class ReplacementController implements Controller {
      * transformed file as HTML file with extension .html. Transformation
      * works in such a way that it transforms text that is between
      * special tags. There are three special tags that can be used:
-     * <ol><li>"#" - Everything between this tag will become bold</li>
+     * <ol>
+     * <li>"#" - Everything between this tag will become bold</li>
      * <li>"*" - Everything between this tag will become italic</li>
-     * <li>"'" - Everything between this tag will become underlined</li></ol><br><br>
+     * <li>"'" - Everything between this tag will become underlined</li>
+     * </ol><br><br>
      *
      * Examples:<br>
      * \#car\# -> transforms to -><strong>car</strong><br>
@@ -46,8 +49,10 @@ class ReplacementController implements Controller {
      * \*\#'car'\#\* -> transforms to -><em><strong><u>car</u></strong></em><br><br>
      *
      * \*Note:<br>
-     * <ol><li>Opening tag has to be closed, tags that are not closed will result in an error</li>
-     * <li>Uploaded file can not be larger than 1024 bytes</li></ol>
+     * <ol>
+     * <li>Opening tag has to be closed, tags that are not closed will result in an error</li>
+     * <li>Uploaded file can not be larger than 1024 bytes</li>
+     * </ol>
      *
      * @param Request $request Stores HTTP request information.
      * @return Response Object that sends HTTP response.
@@ -98,11 +103,11 @@ class ReplacementController implements Controller {
     }
 
     /**
-     * Creates object that stores HTML file which will be
-     * sent to user as a response.
+     * Creates object that holds content which will
+     * be sent to user as HTML response.
      *
      * @param string $message Error message for user.
-     * @return HTMLResponse Object containing HTML file which will be sent to user.
+     * @return HTMLResponse Object containing content which will be sent to user.
      */
     private function htmlResponse(string $message = ''): HTMLResponse {
         return new HTMLResponse($this->template->render(

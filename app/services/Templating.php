@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Uses provided template file and inserts
+ * Takes template file and inserts
  * provided variables into that template file.
  */
 class Templating {
@@ -25,7 +25,8 @@ class Templating {
      *
      * @param string $file Template file.
      * @param array $arguments Arguments.
-     * @return string Template file filled with arguments as a string.
+     * @return string Template file filled with arguments extracted from
+     *                $arguments as a string.
      */
     public function render(string $file, array $arguments = []): string {
         $file = $this->path . $file;

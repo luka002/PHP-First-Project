@@ -37,7 +37,7 @@ abstract class BaseForm {
      * Checks if the form has an error under the given key.
      *
      * @param string $name Error key.
-     * @return bool True is an error under given key exists, else false.
+     * @return bool True is an error under the given key exists, else false.
      */
     public function hasError(string $name): bool {
         return array_key_exists($name, $this->errors);

@@ -8,28 +8,29 @@
  *
  * Note*:<br>
  * User can change his status just by clicking. It is made this way
- * for a simpler demonstration.
+ * for purpose of demonstration.
  */
 class UserController implements Controller {
 
     /**
-     * @var Templating Creates HTML file that will be sent back to user.
+     * @var Templating Fills provided template file with provided variables.
      */
     private $template;
     /**
-     * @var DBRepository Allows communication with data base.
+     * @var DBRepository Allows communication with database.
      */
     private $dbRepository;
     /**
-     * @var User Holds data about current user or null if user not logged in.
+     * @var User Holds data about logged in user or null if user not logged in.
      */
     private $user;
 
     /**
      * UserController constructor.
-     * @param Templating $template Creates HTML file that will be sent back to user.
-     * @param DBRepository $dbRepository Allows communication with data base.
-     * @param User|null $user Holds data about current user or null if user not logged in.
+     * @param Templating $template Fills provided template file with provided variables.
+     * @param DBRepository $dbRepository Allows communication with database.
+     * @param User|null $user Holds data about logged in user or null if user
+     *                        is not logged in.
      */
     public function __construct(Templating $template, DBRepository $dbRepository,
                                 User $user = null) {
@@ -74,14 +75,14 @@ class UserController implements Controller {
     }
 
     /**
-     * Creates object that stores HTML file which will be
-     * sent to user as a response.
+     * Creates object that holds content which will
+     * be sent to user as HTML response.
      *
      * @param bool $admin True is user is admin, else false.
      * @param bool $premium True is user is premium, else false.
      * @param string $type User type, "premium", "regular" and "admin" possible.
      * @param string $message Message for user.
-     * @return HTMLResponse Object containing HTML file which will be sent to user.
+     * @return HTMLResponse Object containing content which will be sent to user.
      */
     private function htmlResponse(bool $admin, bool $premium, string $type,
                                   string $message = ''): HTMLResponse {

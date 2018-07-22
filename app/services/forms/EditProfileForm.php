@@ -19,7 +19,7 @@ class EditProfileForm extends BaseForm {
      */
     private $passwordNew2;
     /**
-     * @var DBRepository Allows communication with data base.
+     * @var DBRepository Allows communication with database.
      */
     private $dbRepository;
     /**
@@ -31,7 +31,7 @@ class EditProfileForm extends BaseForm {
      * EditProfileForm constructor.
      * @param array $post Array containing parameters from the form
      *                    when "POST" method has been used.
-     * @param DBRepository $dbRepository Allows communication with data base.
+     * @param DBRepository $dbRepository Allows communication with database.
      */
     public function __construct(array $post, DBRepository $dbRepository) {
         parent::__construct();

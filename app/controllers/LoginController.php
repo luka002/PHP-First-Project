@@ -7,11 +7,11 @@
 class LoginController implements Controller {
 
     /**
-     * @var Templating Creates HTML file that will be sent back to user.
+     * @var Templating Fills provided template file with provided variables.
      */
     private $template;
     /**
-     * @var DBRepository Allows communication with data base.
+     * @var DBRepository Allows communication with database.
      */
     private $dbRepository;
     /**
@@ -19,16 +19,17 @@ class LoginController implements Controller {
      */
     private $form;
     /**
-     * @var User Holds data about current user or null if user not logged in.
+     * @var User Holds data about logged in user or null if user not logged in.
      */
     private $user;
 
     /**
      * LoginController constructor.
-     * @param Templating $template Creates HTML file that will be sent back to user.
-     * @param DBRepository $dbRepository Allows communication with data base.
+     * @param Templating $template Fills provided template file with provided variables.
+     * @param DBRepository $dbRepository Allows communication with database.
      * @param LoginForm $form Holds information that user inputted in the form.
-     * @param User|null $user Holds data about current user or null if user not logged in.
+     * @param User|null $user Holds data about logged in user or null if user
+     *                        is not logged in.
      */
     public function __construct(Templating $template, DBRepository $dbRepository,
                                 LoginForm $form, User $user = null) {
@@ -64,10 +65,10 @@ class LoginController implements Controller {
     }
 
     /**
-     * Creates object that stores HTML file which will be
-     * sent to user as a response.
+     * Creates object that holds content which will
+     * be sent to user as HTML response.
      *
-     * @return HTMLResponse Object containing HTML file which will be sent to user.
+     * @return HTMLResponse Object containing content which will be sent to user.
      */
     private function htmlResponse(): HTMLResponse {
         return new HTMLResponse($this->template->render(

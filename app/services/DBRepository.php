@@ -6,19 +6,19 @@
 class DBRepository {
 
     /**
-     * Data base user name.
+     * Database user name.
      */
     private const USERNAME="root";
     /**
-     * Data base password.
+     * Database password.
      */
     private const PASSWORD="12345678";
     /**
-     * Data base host address.
+     * Database host address.
      */
     private const HOST="localhost";
     /**
-     * Data base name.
+     * Database name.
      */
     private const DB="ssp";
     /**
@@ -26,12 +26,12 @@ class DBRepository {
      */
     private const CREATE_TABLES_FILE = '../app/create_tables.sql';
     /**
-     * @var PDO Data base connection.
+     * @var PDO Database connection.
      */
     private $pdo;
 
     /**
-     * DBRepository constructor. Sets up connection with the data base and
+     * DBRepository constructor. Sets up connection with the database and
      * creates tables if they don't exist.
      */
     public function __construct() {
@@ -114,7 +114,7 @@ class DBRepository {
     }
 
     /**
-     * Stores given user into the "users" table in the data base.
+     * Stores given user into the "users" table in the database.
      *
      * @param User $user User being stored.
      */
@@ -130,7 +130,7 @@ class DBRepository {
 
     /**
      * Stores parameters for password update link into the
-     * "update_password" table in the data base.
+     * "update_password" table in the database.
      *
      * @param string $email Email from user that requested password update link.
      * @param string $token Unique token that is part of the password update link.

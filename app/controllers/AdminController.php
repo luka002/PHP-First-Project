@@ -4,19 +4,19 @@
  * Concrete implementation in strategy design pattern.
  * Represents Controller responsible for processing actions made
  * by the administrator. All of the users and all of their normalizations
- * are available to the administrator. Action that are available
+ * can be edited by the administrator. Action that are available
  * to the administrator are: updating user's "premium" status,
- * updating user's "admin" status, deleting the user, deleting
+ * updating user's "admin" status, deleting a user, deleting
  * user's normalizations and adding a new user.
  */
 class AdminController implements Controller {
 
     /**
-     * @var Templating Creates HTML file that will be sent back to user.
+     * @var Templating Fills provided template file with provided variables.
      */
     private $template;
     /**
-     * @var DBRepository Allows communication with data base.
+     * @var DBRepository Allows communication with database.
      */
     private $dbRepository;
     /**
@@ -24,16 +24,17 @@ class AdminController implements Controller {
      */
     private $form;
     /**
-     * @var User Holds data about current user or null if user not logged in.
+     * @var User Holds data about logged in user or null if user not logged in.
      */
     private $user;
 
     /**
      * AdminController constructor.
-     * @param Templating $template Creates HTML file that will be sent back to user.
-     * @param DBRepository $dbRepository Allows communication with data base.
+     * @param Templating $template Fills provided template file with provided variables.
+     * @param DBRepository $dbRepository Allows communication with database.
      * @param RegistrationForm $form Holds information that user inputted in the form.
-     * @param User|null $user Holds data about current user or null if user not logged in.
+     * @param User|null $user Holds data about logged in user or null if user
+     *                        is not logged in.
      */
     public function __construct(Templating $template, DBRepository $dbRepository,
                                 RegistrationForm $form, User $user = null) {
@@ -47,7 +48,7 @@ class AdminController implements Controller {
      * Executes action that administrator selected.
      * Action that are available to the administrator are:
      * updating user's "premium" status, updating user's
-     * "admin" status, deleting the user, deleting user's
+     * "admin" status, deleting a user, deleting user's
      * normalizations and adding a new user.
      *
      * @param Request $request Stores HTTP request information.
@@ -72,6 +73,9 @@ class AdminController implements Controller {
 
             } else if (isset($request->getPost()['delete'])) {
                 $this->dbRepository->removeUser($userId);
+                if ($userId == $this->user->getId()) {
+                    return new RedirectResponse('index.php?controller=logout');
+                }
 
             } else if (isset($request->getPost()['edit'])) {
                 return $this->editUserNorms($userId);
@@ -114,7 +118,7 @@ class AdminController implements Controller {
      * Fetches user and all of his norms.
      *
      * @param int $userId User ID.
-     * @return HTMLResponse Object containing HTML file which will be sent to user.
+     * @return HTMLResponse Object containing content which will be sent to user.
      */
     private function editUserNorms(int $userId): HTMLResponse {
         $norms = $this->dbRepository->getUserNorms($userId);
@@ -127,7 +131,7 @@ class AdminController implements Controller {
      *
      * @param Request $request Stores HTTP request information.
      * @param int $userId ID from user whose norm will be deleted.
-     * @return HTMLResponse Object containing HTML file which will be sent to user.
+     * @return HTMLResponse Object containing content which will be sent to user.
      */
     private function removeUserNorm(Request $request, int $userId): HTMLResponse {
         $normId = $request->getPost()['removeNorm'];
@@ -140,9 +144,9 @@ class AdminController implements Controller {
     }
 
     /**
-     * Adds user to the data base if the form is valid.
+     * Adds user to data base if the form is valid.
      *
-     * @return HTMLResponse Object containing HTML file which will be sent to user.
+     * @return HTMLResponse Object containing content which will be sent to user.
      */
     private function addUser(): HTMLResponse {
         $this->form->validate();
@@ -158,8 +162,8 @@ class AdminController implements Controller {
     }
 
     /**
-     * Creates object that stores HTML file which will be
-     * sent to user as a response.
+     * Creates object that holds content which will
+     * be sent to user as HTML response.
      *
      * @param array|null $users All users in the data base.
      * @param array|null $norms Norms from the selected user.
@@ -168,7 +172,7 @@ class AdminController implements Controller {
      *                        will be displayed.
      * @param bool $userAdded True is user added, otherwise false.
      * @param null $user Selected user.
-     * @return HTMLResponse Object containing HTML file which will be sent to user.
+     * @return HTMLResponse Object containing content which will be sent to user.
      */
     private function htmlResponse(array $users = null, array $norms = null, bool $showUsers,
                                   bool $userAdded, $user = null): HTMLResponse {

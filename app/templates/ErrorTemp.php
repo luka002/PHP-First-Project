@@ -1,3 +1,3 @@
-<?= $poruka ?><br><br>
+<?= $message ?><br><br>
 
-<p>Došlo je do greške, nije moguće pristupiti ovoj stranici</p>
+<p>Can not access this page.</p>

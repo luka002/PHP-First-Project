@@ -14,14 +14,12 @@ $request = new Request(
 );
 $param = 'GET' === $request->getMethod() ? $request->getGet()['controller'] ?? ''
                                          : $request->getPost()['controller'] ?? '';
-
 $user = null;
 if (isset($request->getSession()['name'])) {
     $user = $dbRepository->findUserByName($request->getSession()['name']);
 }
 
 if (!empty($param)) {
-
     switch ($param) {
         case 'login' :
             $loginForm = new LoginForm($request->getPost(), $dbRepository);
@@ -81,7 +79,7 @@ if (!empty($param)) {
             break;
 
         default :
-            $controller = new ErrorController($templating);
+            $controller = new ErrorController($templating, $user);
     }
 } else {
     $controller = new IndexController($templating, $dbRepository, $user);

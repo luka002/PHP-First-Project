@@ -2,30 +2,31 @@
 
 /**
  * Concrete implementation in strategy design pattern.
- * Represents Controller responsible for sending user
- * a link for setting up a new password if they have
- * forgotten their current password.
+ * Represents Controller responsible for sending to user
+ * a link for setting up a new password if he has
+ * forgotten his current password.
  */
 class ForgottenPasswordController implements Controller {
 
     /**
-     * @var Templating Creates HTML file that will be sent back to user.
+     * @var Templating Fills provided template file with provided variables.
      */
     private $template;
     /**
-     * @var DBRepository Allows communication with data base.
+     * @var DBRepository Allows communication with database.
      */
     private $dbRepository;
     /**
-     * @var User Holds data about current user or null if user not logged in.
+     * @var User Holds data about logged in user or null if user not logged in.
      */
     private $user;
 
     /**
      * ForgottenPasswordController constructor.
-     * @param Templating $template Creates HTML file that will be sent back to user.
-     * @param DBRepository $dbRepository Allows communication with data base.
-     * @param User|null $user Holds data about current user or null if user not logged in.
+     * @param Templating $template Fills provided template file with provided variables.
+     * @param DBRepository $dbRepository Allows communication with database.
+     * @param User|null $user Holds data about logged in user or null if user
+     *                        is not logged in.
      */
     public function __construct(Templating $template, DBRepository $dbRepository,
                                 User $user = null) {
@@ -81,14 +82,14 @@ class ForgottenPasswordController implements Controller {
     }
 
     /**
-     * Creates object that stores HTML file which will be
-     * sent to user as a response.
+     * Creates object that holds content which will
+     * be sent to user as HTML response.
      *
      * @param string $email Email that user entered.
      * @param bool $success True if link has been sent, else false.
      * @param string|null $link Link for setting up a new password.
      * @param string $message Message for user.
-     * @return HTMLResponse Object containing HTML file which will be sent to user.
+     * @return HTMLResponse Object containing content which will be sent to user.
      */
     private function htmlResponse(string $email, bool $success, string $link = null,
                                   string $message): HTMLResponse {

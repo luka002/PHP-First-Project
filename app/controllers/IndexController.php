@@ -7,23 +7,24 @@
 class IndexController implements Controller {
 
     /**
-     * @var Templating Creates HTML file that will be sent back to user.
+     * @var Templating Fills provided template file with provided variables.
      */
     private $template;
     /**
-     * @var DBRepository Allows communication with data base.
+     * @var DBRepository Allows communication with database.
      */
     private $dbRepository;
     /**
-     * @var User Holds data about current user or null if user not logged in.
+     * @var User Holds data about logged in user or null if user not logged in.
      */
     private $user;
 
     /**
      * IndexController constructor.
-     * @param Templating $template Creates HTML file that will be sent back to user.
-     * @param DBRepository $dbRepository Allows communication with data base.
-     * @param User|null $user Holds data about current user or null if user not logged in.
+     * @param Templating $template Fills provided template file with provided variables.
+     * @param DBRepository $dbRepository Allows communication with database.
+     * @param User|null $user Holds data about logged in user or null if user
+     *                        is not logged in.
      */
     public function __construct(Templating $template, DBRepository $dbRepository,
                                 User $user = null) {
@@ -47,11 +48,11 @@ class IndexController implements Controller {
     }
 
     /**
-     * Creates object that stores HTML file which will be
-     * sent to user as a response.
+     * Creates object that holds content which will
+     * be sent to user as HTML response.
      *
      * @param bool $loggedIn True is user is logged in, else false.
-     * @return HTMLResponse Object containing HTML file which will be sent to user.
+     * @return HTMLResponse Object containing content which will be sent to user.
      */
     private function htmlResponse(bool $loggedIn): HTMLResponse {
         return new HTMLResponse($this->template->render(

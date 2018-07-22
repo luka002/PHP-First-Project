@@ -100,7 +100,6 @@ li a {
 }
 li a:hover {
     background: linear-gradient(to bottom, #545454, #000000);
-
     border-radius: 5px;
 }
 #title {
@@ -276,7 +275,7 @@ th {
     background-color: #336a9b;
 }
 pre {
-     white-space: pre-wrap;
+    white-space: pre-wrap;
     font-size: 16px;
  }
 .transf-containter {

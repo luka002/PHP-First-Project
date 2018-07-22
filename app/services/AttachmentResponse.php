@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Sends attachment to the user as HTML response.
+ * Sends attachment to user as HTML response.
  */
 class AttachmentResponse implements Response {
 
