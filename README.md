@@ -28,3 +28,7 @@ already set in your local environment. File name where those values can be chang
 It is recommended to run this application with google chrome. Since the main purpose of this project was to demonstrate PHP knowledge,
 it has not been tested on other browsers except google chrome. If you don't use google chrome, you might experience some visual
 inconsistencies.
+
+## Author
+
+Luka Grgić
