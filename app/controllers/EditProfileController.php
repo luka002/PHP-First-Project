@@ -12,13 +12,13 @@ class EditProfileController implements Controller {
      */
     private $template;
     /**
-     * @var EditProfileForm Holds information that user inputted in the form.
-     */
-    private $form;
-    /**
      * @var User Holds data about logged in user or null if user not logged in.
      */
     private $user;
+    /**
+     * @var EditProfileForm Holds information that user inputted in the form.
+     */
+    private $form;
 
     /**
      * EditProfileController constructor.
@@ -27,11 +27,11 @@ class EditProfileController implements Controller {
      * @param User|null $user Holds data about logged in user or null if user
      *                        is not logged in.
      */
-    public function __construct(Templating $template, EditProfileForm $form,
-                                User $user = null) {
+    public function __construct(Templating $template, User $user = null,
+                                EditProfileForm $form) {
         $this->template = $template;
-        $this->form = $form;
         $this->user = $user;
+        $this->form = $form;
     }
 
     /**

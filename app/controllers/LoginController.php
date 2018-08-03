@@ -15,13 +15,13 @@ class LoginController implements Controller {
      */
     private $dbRepository;
     /**
-     * @var LoginForm Holds information that user inputted in the form.
-     */
-    private $form;
-    /**
      * @var User Holds data about logged in user or null if user not logged in.
      */
     private $user;
+    /**
+     * @var LoginForm Holds information that user inputted in the form.
+     */
+    private $form;
 
     /**
      * LoginController constructor.
@@ -32,11 +32,11 @@ class LoginController implements Controller {
      *                        is not logged in.
      */
     public function __construct(Templating $template, DBRepository $dbRepository,
-                                LoginForm $form, User $user = null) {
+                                User $user = null, LoginForm $form) {
         $this->template = $template;
         $this->dbRepository = $dbRepository;
-        $this->form = $form;
         $this->user = $user;
+        $this->form = $form;
     }
 
     /**

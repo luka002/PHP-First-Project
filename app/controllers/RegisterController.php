@@ -16,13 +16,13 @@ class RegisterController implements Controller {
      */
     private $dbRepository;
     /**
-     * @var RegistrationForm Holds information that user inputted in the form.
-     */
-    private $form;
-    /**
      * @var User Holds data about logged in user or null if user not logged in.
      */
     private $user;
+    /**
+     * @var RegistrationForm Holds information that user inputted in the form.
+     */
+    private $form;
 
     /**
      * RegisterController constructor.
@@ -33,11 +33,11 @@ class RegisterController implements Controller {
      *                        is not logged in.
      */
     public function __construct(Templating $template, DBRepository $dbRepository,
-                                RegistrationForm $form, User $user = null) {
+                                User $user = null, RegistrationForm $form) {
         $this->template = $template;
         $this->dbRepository = $dbRepository;
-        $this->form = $form;
         $this->user = $user;
+        $this->form = $form;
     }
 
     /**

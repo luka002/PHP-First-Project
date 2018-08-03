@@ -28,8 +28,8 @@ class ErrorController implements Controller {
     /**
      * Sets response code to 404 and sends user a message.
      *
-     * @param Request $request
-     * @return Response
+     * @param Request $request Stores HTTP request information.
+     * @return Response Object that sends HTTP response.
      */
     public function handle(Request $request): Response {
         if (null === $this->user) {

@@ -16,13 +16,13 @@ class ChangePasswordController implements Controller {
      */
     private $dbRepository;
     /**
-     * @var ChangePasswordForm Holds information that user inputted in the form.
-     */
-    private $form;
-    /**
      * @var User Holds data about logged in user or null if user not logged in.
      */
     private $user;
+    /**
+     * @var ChangePasswordForm Holds information that user inputted in the form.
+     */
+    private $form;
 
     /**
      * ChangePasswordController constructor.
@@ -33,11 +33,11 @@ class ChangePasswordController implements Controller {
      *                        is not logged in.
      */
     public function __construct(Templating $template, DBRepository $dbRepository,
-                                ChangePasswordForm $form, User $user = null) {
+                                User $user = null, ChangePasswordForm $form) {
         $this->template = $template;
         $this->dbRepository = $dbRepository;
-        $this->form = $form;
         $this->user = $user;
+        $this->form = $form;
     }
 
     /**
